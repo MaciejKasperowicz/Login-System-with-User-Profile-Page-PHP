@@ -13,8 +13,8 @@
                 <p>Don't have an account yet? Sign up here!</p>
                 <form action="includes/signup.php" method="post">
                     <input type="text" name="username" placeholder="Username">
-                    <input type="text" name="password" placeholder="Password">
-                    <input type="text" name="passwordRepeat" placeholder="Repeat Password">
+                    <input type="password" name="password" placeholder="Password">
+                    <input type="password" name="passwordRepeat" placeholder="Repeat Password">
                     <input type="text" name="email" placeholder="E-mail">
                     <br>
                     <button type="submit" name="submit">SIGN UP</button>
@@ -25,7 +25,7 @@
                 <p>Login here!</p>
                 <form action="includes/login.php" method="post">
                     <input type="text" name="username" placeholder="Username">
-                    <input type="text" name="password" placeholder="Password">
+                    <input type="password" name="password" placeholder="Password">
                     <br>
                     <button type="submit" name="submit">LOGIN</button>
                 </form>
