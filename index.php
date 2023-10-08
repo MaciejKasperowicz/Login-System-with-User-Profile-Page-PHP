@@ -35,3 +35,12 @@
     
 </body>
 </html>
+
+<!-- php -S localhost:8080 -->
+
+<!-- CREATE TABLE users (
+    user_id INT(11) AUTO_INCREMENT PRIMARY KEY not null,
+    user_username TINYTEXT not null,
+    user_password LONGTEXT not null,
+    user_email TINYTEXT not null
+); -->

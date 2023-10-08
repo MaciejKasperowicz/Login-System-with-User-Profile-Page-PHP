@@ -13,13 +13,15 @@ if (isset($_POST["submit"])) {
     echo $email;
 
     //Instantiate SignupContr class
+    include "../classes/DatabaseHandler.php";
     include "../classes/Signup.php";
     include "../classes/SignupController.php";
 
     $signup = new SignupController($username, $password, $passwordRepeat, $email);
     
-
     //Running error handlers and user signup
+    $signup->signupUser();
 
     //Going back to front page
+    header("location: ../index.php?error=none");
 }

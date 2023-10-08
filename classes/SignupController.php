@@ -1,6 +1,6 @@
 <?php
 
-class SignupController{
+class SignupController extends Signup{
     private $username;
     private $password;
     private $passwordRepeat;
@@ -13,44 +13,69 @@ class SignupController{
         $this->email = $email;
     }
 
-    private function emptyInput(){
-        $result;
-        if(empty($this->username) || empty($this->password) || empty($this->passwordRepeat) || empty($this->email)){
-            $result = true;
-        } else {
-            $result = false;
+    public function signupUser(){
+        if($this->emptyInput()){
+            header("location: ../index.php?error=emptyInput");
+            exit();
         }
-        return $result;
+        if($this->invalidUsername()){
+            header("location: ../index.php?error=invalidUsername");
+            exit();
+        }
+        if($this->invalidEmail()){
+            header("location: ../index.php?error=invalidEmail");
+            exit();
+        }
+        if($this->isDifferentPassword()){
+            header("location: ../index.php?error=differentPassword");
+            exit();
+        }
+        if($this->isUserAlreadyExist()){
+            header("location: ../index.php?error=UserAlreadyExist");
+            exit();
+        }
+
+        $this->setUser($this->username, $this->password, $this->email);
+    }
+
+    private function emptyInput(){
+        if(empty($this->username) || empty($this->password) || empty($this->passwordRepeat) || empty($this->email)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private function invalidUsername(){
-        $result;
         $properNameExpression = "/^[a-zA-Z0-9]*$/";
         if(preg_match($properNameExpression, $this->username)){
-            $result = false;
+            return false;
         } else {
-            $result = true;
+            return true;
         }
-        return $result;
     }
 
     private function invalidEmail(){
-        $result;
         if(filter_var($this->email, FILTER_VALIDATE_EMAIL)){
-            $result = false;
+            return false;
         } else {
-            $result = true;
+            return true;
         }
-        return $result;
     }
 
     private function isDifferentPassword(){
-        $result;
         if($this->password === $this->passwordRepeat){
-            $result = false;
+            return false;
         } else {
-            $result = true;
+            return true;
         }
-        return $result;
+    }
+
+    private function isUserAlreadyExist(){
+        if($this->checkUser($this->username, $this->email)){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
