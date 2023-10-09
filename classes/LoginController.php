@@ -16,7 +16,7 @@ class LoginController extends Login{
             exit();
         }
 
-        $this->getUser($this->username, $this-> email, $this->password);
+        $this->getUser($this->username, $this->password);
     }
 
     private function emptyInput(){

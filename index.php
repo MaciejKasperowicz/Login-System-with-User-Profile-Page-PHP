@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +10,34 @@
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <ul class="menu-member">
+            <?php 
+                if(isset($_SESSION["userid"])){
+
+                ?>
+                <li><a href ="#">
+                    <?php echo $_SESSION["username"]; ?> 
+                    </a>
+                </li>
+                <li>
+                    <a href ="includes/logout.php" class="header-login-a">LOGOUT
+                    </a>
+                </li>
+                <?php
+                } else {
+                    ?>
+                <li>
+                    <a href="#">SIGN UP </a>
+                </li>
+                <li>
+                    <a href="#" class="header-login-a">LOGIN </a>
+                </li>
+                <?php
+                }
+                ?>
+        </ul>
+    </header>
     <section class="index-login">
         <div class="wrapper">
             <div class="index-login-signup">

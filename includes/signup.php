@@ -12,7 +12,7 @@ if (isset($_POST["submit"])) {
     echo $passwordRepeat;
     echo $email;
 
-    //Instantiate SignupContr class
+    //Instantiate SignupController class
     include "../classes/DatabaseHandler.php";
     include "../classes/Signup.php";
     include "../classes/SignupController.php";
