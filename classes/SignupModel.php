@@ -1,6 +1,6 @@
 <?php
 
-class Signup extends DatabaseHandler{
+class SignupModel extends DatabaseHandler{
 
     protected function setUser($username, $password, $email){
         $query = "INSERT INTO users (user_username, user_password, user_email) VALUES (?,?,?);";

@@ -1,6 +1,6 @@
 <?php
 
-class SignupController extends Signup{
+class SignupController extends SignupModel{
     private $username;
     private $password;
     private $passwordRepeat;

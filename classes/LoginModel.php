@@ -1,6 +1,6 @@
 <?php
 
-class Login extends DatabaseHandler{
+class LoginModel extends DatabaseHandler{
 
     protected function getUser($username, $password){
         $passwordQuery = "SELECT user_password FROM users WHERE user_username = ? OR user_email = ?";
