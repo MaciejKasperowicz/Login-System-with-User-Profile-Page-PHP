@@ -1,16 +1,16 @@
 <?php
 
-if (isset($_POST["submit"])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     //Grabbing the data
     $username = $_POST["username"];
     $password = $_POST["password"];
     $passwordRepeat = $_POST["passwordRepeat"];
     $email = $_POST["email"];
-    echo $username;
-    echo $password;
-    echo $passwordRepeat;
-    echo $email;
+    // echo htmlspecialchars($username);
+    // echo htmlspecialchars($password);
+    // echo htmlspecialchars($passwordRepeat);
+    // echo htmlspecialchars($email);
 
     //Instantiate SignupController class
     include "../classes/DatabaseHandler.php";
@@ -24,4 +24,7 @@ if (isset($_POST["submit"])) {
 
     //Going back to front page
     header("location: ../index.php?error=none");
+} else {
+    header("location: ../index.php");
+    die();
 }
