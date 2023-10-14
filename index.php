@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once "./includes/config_session.php";
+require_once "./classes/SignupView.php";
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +63,10 @@ session_start();
                     <button type="submit" name="submit">LOGIN</button>
                 </form>
             </div>
+            <?php
+                $signupView = new SignupView();
+                $signupView->checkSignupErrors();
+            ?>
         </div>
     </section>
     

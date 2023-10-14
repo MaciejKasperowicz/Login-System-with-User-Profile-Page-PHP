@@ -1,14 +1,25 @@
 <?php
+declare(strict_types = 1);
 
 class SignupModel extends DatabaseHandler{
 
-    protected function setUser($username, $password, $email){
-        $query = "INSERT INTO users (user_username, user_password, user_email) VALUES (?,?,?);";
+    protected function setUser(string $username, string $password, string $email){
+        $query = "INSERT INTO users (user_username, user_password, user_email) VALUES (:username, :password, :email);";
+
         $stmt = $this->connect()->prepare($query);
 
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $options = [
+            "cost" => 12
+        ];
 
-        if(!$stmt->execute([$username, $hashedPassword, $email])){
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
+
+        
+        $stmt->bindParam(":username", $username);
+        $stmt->bindParam(":password", $hashedPassword);
+        $stmt->bindParam(":email", $email);
+
+        if(!$stmt->execute()){
             $stmt = null;
             header("location: ../index.php?error=stmtfailed");
             exit();
@@ -17,11 +28,14 @@ class SignupModel extends DatabaseHandler{
         $stmt = null;
     }
 
-    protected function checkUser($username, $email){
-        $query = "SELECT user_username FROM users WHERE user_username = ? OR user_email = ?;";
+    protected function checkUser(string $username, string $email){
+        $query = "SELECT user_username FROM users WHERE user_username = :username OR user_email = :email;";
         $stmt = $this->connect()->prepare($query);
+        $stmt->bindParam(":username", $username);
+        $stmt->bindParam(":email", $email);
+
         
-        if(!$stmt->execute([$username, $email])){
+        if(!$stmt->execute()){
             $stmt = null;
             header("location: ../index.php?error=stmtfailed");
             exit();

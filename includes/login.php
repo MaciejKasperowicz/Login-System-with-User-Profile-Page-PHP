@@ -5,9 +5,9 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $password = $_POST["password"];
     
     try {
-        include "../classes/DatabaseHandler.php";
-        include "../classes/LoginModel.php";
-        include "../classes/LoginController.php";
+        require_once "../classes/DatabaseHandler.php";
+        require_once "../classes/LoginModel.php";
+        require_once "../classes/LoginController.php";
 
         //Instantiate LoginController class
         $login = new LoginController($username, $password);

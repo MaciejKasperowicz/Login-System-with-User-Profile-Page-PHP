@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -9,9 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST["email"];
 
     try {
-        include "../classes/DatabaseHandler.php";
-        include "../classes/SignupModel.php";
-        include "../classes/SignupController.php";
+        require_once "../classes/DatabaseHandler.php";
+        require_once "../classes/SignupModel.php";
+        require_once "../classes/SignupController.php";
         
         //Instantiate SignupController class
         $signup = new SignupController($username, $password, $passwordRepeat, $email);
@@ -20,8 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $signup->signupUser();
     
         //Going back to front page
-        header("location: ../index.php?error=none");
-
+        header("location: ../index.php?signup=success");
+        die();
     } catch (PDOException $e) {
         die("Query failed:: " . $e->getMessage());
     }
