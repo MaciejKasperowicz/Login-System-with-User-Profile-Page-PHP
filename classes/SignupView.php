@@ -20,4 +20,27 @@ class SignupView{
             echo "<p class='from-success'>Signup success!</p>";
         }
     }
+
+    public function signupInputs(){
+
+        if(isset($_SESSION["signupData"]["signupUsername"]) &&
+            !isset($_SESSION["errorsSignup"]["userAlreadyExists"])
+        ){
+            echo '<input type="text" name="username" placeholder="Username" value="' . $_SESSION["signupData"]["signupUsername"] . '">';
+        } else {
+            echo '<input type="text" name="username" placeholder="Username">';
+        }
+
+        echo '<input type="password" name="password" placeholder="Password">';
+        echo '<input type="password" name="passwordRepeat" placeholder="Repeat Password">';
+
+        if(isset($_SESSION["signupData"]["signupEmail"]) &&
+            !isset($_SESSION["errorsSignup"]["userAlreadyExists"])
+        ) {
+            echo '<input type="text" name="email" placeholder="E-mail" value="' . $_SESSION["signupData"]["signupEmail"] . '">';
+        } else {
+            echo '<input type="text" name="email" placeholder="E-mail">';
+        }
+    }
+    
 }

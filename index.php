@@ -1,6 +1,7 @@
 <?php
 require_once "./includes/config_session.php";
 require_once "./classes/SignupView.php";
+$signupView = new SignupView();
 ?>
 
 <!DOCTYPE html>
@@ -45,10 +46,13 @@ require_once "./classes/SignupView.php";
                 <h4>SIGN UP</h4>
                 <p>Don't have an account yet? Sign up here!</p>
                 <form action="includes/signup.php" method="post">
-                    <input type="text" name="username" placeholder="Username">
+                    <!-- <input type="text" name="username" placeholder="Username">
                     <input type="password" name="password" placeholder="Password">
                     <input type="password" name="passwordRepeat" placeholder="Repeat Password">
-                    <input type="text" name="email" placeholder="E-mail">
+                    <input type="text" name="email" placeholder="E-mail"> -->
+                    <?php
+                    $signupView->signupInputs();
+                    ?>
                     <br>
                     <button type="submit" name="submit">SIGN UP</button>
                 </form>
@@ -64,7 +68,6 @@ require_once "./classes/SignupView.php";
                 </form>
             </div>
             <?php
-                $signupView = new SignupView();
                 $signupView->checkSignupErrors();
             ?>
         </div>

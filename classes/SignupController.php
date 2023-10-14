@@ -47,6 +47,12 @@ class SignupController extends SignupModel{
 
         if($errors){
             $_SESSION["errorsSignup"] = $errors;
+            $signupData = [
+                "signupUsername" => $this->username,
+                "signupEmail" => $this->email
+            ];
+            $_SESSION["signupData"] = $signupData;
+
             header("location: ../index.php");
             die();
         }
