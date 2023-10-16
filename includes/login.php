@@ -16,10 +16,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $login->loginUser();
 
         //Going back to front page
-        header("location: ../index.php?error=none");
+        header("location: ../index.php?login=success");
 
     } catch (PDOException $e) {
-        die("Query failed:: " . $e->getMessage());
+        die("Query failed: " . $e->getMessage());
     } 
 
 } else {

@@ -25,6 +25,8 @@ class SignupView{
 
         if(isset($_SESSION["signupData"]["signupUsername"]) &&
             !isset($_SESSION["errorsSignup"]["userAlreadyExists"])
+            &&
+            !isset($_SESSION["errorsSignup"]["invalidUsername"])
         ){
             echo '<input type="text" name="username" placeholder="Username" value="' . $_SESSION["signupData"]["signupUsername"] . '">';
         } else {
@@ -36,6 +38,8 @@ class SignupView{
 
         if(isset($_SESSION["signupData"]["signupEmail"]) &&
             !isset($_SESSION["errorsSignup"]["userAlreadyExists"])
+            &&
+            !isset($_SESSION["errorsSignup"]["invalidEmail"])
         ) {
             echo '<input type="text" name="email" placeholder="E-mail" value="' . $_SESSION["signupData"]["signupEmail"] . '">';
         } else {

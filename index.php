@@ -1,7 +1,9 @@
 <?php
 require_once "./includes/config_session.php";
 require_once "./classes/SignupView.php";
+require_once "./classes/LoginView.php";
 $signupView = new SignupView();
+$loginView = new LoginView();
 ?>
 
 <!DOCTYPE html>
@@ -12,52 +14,24 @@ $signupView = new SignupView();
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <ul class="menu-member">
-            <?php 
-                if(isset($_SESSION["userid"])){
-
-                ?>
-                <li><a href ="#">
-                    <?php echo $_SESSION["username"]; ?> 
-                    </a>
-                </li>
-                <li>
-                    <a href ="includes/logout.php" class="header-login-a">LOGOUT
-                    </a>
-                </li>
-                <?php
-                } else {
-                    ?>
-                <li>
-                    <a href="#">SIGN UP </a>
-                </li>
-                <li>
-                    <a href="#" class="header-login-a">LOGIN </a>
-                </li>
-                <?php
-                }
-                ?>
-        </ul>
-    </header>
+    <h3>
+        <?php
+            $loginView->outputUsername();
+        ?>   
+    </h3>
+    <?php
+        if(isset($_SESSION["userId"])){ ?>
+        <form action="includes/logout.php" method = "post">
+            <button>Logout</button>
+        </form>
+        <?php } ?>
+    
+    
     <section class="index-login">
         <div class="wrapper">
-            <div class="index-login-signup">
-                <h4>SIGN UP</h4>
-                <p>Don't have an account yet? Sign up here!</p>
-                <form action="includes/signup.php" method="post">
-                    <!-- <input type="text" name="username" placeholder="Username">
-                    <input type="password" name="password" placeholder="Password">
-                    <input type="password" name="passwordRepeat" placeholder="Repeat Password">
-                    <input type="text" name="email" placeholder="E-mail"> -->
-                    <?php
-                    $signupView->signupInputs();
-                    ?>
-                    <br>
-                    <button type="submit" name="submit">SIGN UP</button>
-                </form>
-            </div>
-            <div class="index-login-login">
+            <?php
+            if(!isset($_SESSION["userId"])){ ?>
+                <div class="index-login-login">
                 <h4>LOGIN</h4>
                 <p>Login here!</p>
                 <form action="includes/login.php" method="post">
@@ -66,10 +40,25 @@ $signupView = new SignupView();
                     <br>
                     <button type="submit" name="submit">LOGIN</button>
                 </form>
-            </div>
-            <?php
-                $signupView->checkSignupErrors();
+            <?php }
+                $loginView->checkLoginErrors();
             ?>
+                </div>
+            <div class="index-login-signup">
+                <h4>SIGN UP</h4>
+                <p>Don't have an account yet? Sign up here!</p>
+                <form action="includes/signup.php" method="post">
+                    <?php
+                    $signupView->signupInputs();
+                    ?>
+                    <br>
+                    <button type="submit" name="submit">SIGN UP</button>
+                </form>
+                <?php
+                    $signupView->checkSignupErrors();
+                ?>
+            </div>
+            
         </div>
     </section>
     

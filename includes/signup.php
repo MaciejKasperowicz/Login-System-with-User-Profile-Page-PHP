@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         header("location: ../index.php?signup=success");
         die();
     } catch (PDOException $e) {
-        die("Query failed:: " . $e->getMessage());
+        die("Query failed: " . $e->getMessage());
     }
 
 } else {
