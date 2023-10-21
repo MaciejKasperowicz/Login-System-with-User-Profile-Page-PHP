@@ -16,8 +16,14 @@ class LoginModel extends DatabaseHandler{
             exit();
         }
 
+        // if($stmt->rowCount() === 0){
+        //     $stmt = null;
+        //     header("location: ../index.php?error=userNotFound");
+        //     exit();
+        // }
+
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt = null;
-        return $result;
+        return $result ? $result : false;
     }
 }

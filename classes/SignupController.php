@@ -105,4 +105,11 @@ class SignupController extends SignupModel{
             return false;
         }
     }
+
+    public function getUserId(string $username) :int
+    {
+        $user = $this->getUserInfo($username);
+        $userId = $user["user_id"];
+        return $userId;
+    }
 }

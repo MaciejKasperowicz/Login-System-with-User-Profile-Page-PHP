@@ -47,4 +47,28 @@ class SignupModel extends DatabaseHandler{
             return false;
         }
     }
+
+    protected function getUserInfo(string $username)
+    {
+        $userQuery = "SELECT * FROM users WHERE user_username = :username;";
+
+        $stmt = $this->connect()->prepare($userQuery);
+        $stmt->bindParam(":username", $username);
+
+        if(!$stmt->execute()){
+            $stmt = null;
+            header("location: ../profile.php?error=stmtfailed");
+            exit();
+        }
+
+        if($stmt->rowCount() === 0){
+            $stmt = null;
+            header("location: ../profile.php?error=profileNotFound");
+            exit();
+        } 
+
+        $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = null;
+        return $userData;
+    }
 }

@@ -14,18 +14,9 @@ $loginView = new LoginView();
     <title>Document</title>
 </head>
 <body>
-    <h3>
-        <?php
-            $loginView->outputUsername();
-        ?>   
-    </h3>
     <?php
-        if(isset($_SESSION["userId"])){ ?>
-        <form action="includes/logout.php" method = "post">
-            <button>Logout</button>
-        </form>
-        <?php } ?>
-    
+        require_once "./header.php";
+    ?>
     
     <section class="index-login">
         <div class="wrapper">
@@ -33,7 +24,6 @@ $loginView = new LoginView();
             if(!isset($_SESSION["userId"])){ ?>
                 <div class="index-login-login">
                 <h4>LOGIN</h4>
-                <p>Login here!</p>
                 <form action="includes/login.php" method="post">
                     <input type="text" name="username" placeholder="Username">
                     <input type="password" name="password" placeholder="Password">
@@ -72,4 +62,14 @@ $loginView = new LoginView();
     user_username TINYTEXT not null,
     user_password LONGTEXT not null,
     user_email TINYTEXT not null
+); -->
+
+<!-- CREATE TABLE profiles(
+	profile_id INT(11) AUTO_INCREMENT not null,
+    profile_about TEXT not null,
+    profile_introtitle TEXT not null,
+    profile_introtext TEXT not null,
+    user_id INT(11),
+    PRIMARY KEY (profile_id),
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
 ); -->
