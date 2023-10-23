@@ -11,7 +11,8 @@ $loginView = new LoginView();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <title>Login System with User Profile Page</title>
 </head>
 <body>
     <?php

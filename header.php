@@ -13,16 +13,7 @@
                     </a>
                 </li>
                 <?php
-                } else {
-                    ?>
-                <li>
-                    <a href="#">SIGN UP </a>
-                </li>
-                <li>
-                    <a href="#" class="header-login-a">LOGIN </a>
-                </li>
-                <?php
-                }
+                } 
                 ?>
         </ul>
 </header>
