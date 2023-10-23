@@ -8,6 +8,16 @@
     require_once "./classes/ProfileInfoView.php";
     $profileInfo = new ProfileInfoView();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <title>User Settings Page</title>
+</head>
+<body>
 <div class="wrapper">
     <div class="profile-settings">
        <h3>PROFILE SETTINGS</h3>
@@ -25,3 +35,4 @@
        </form>
     </div>
 </div>
+</body>
